@@ -1,6 +1,11 @@
 package main
 
 import (
+	"crypto/md5"
+	"encoding/hex"
+	"io"
+	"os"
+	"reflect"
 	"syscall/js"
 )
 
@@ -13,6 +18,29 @@ import (
 // 	println(filesize)
 // 	return filesize
 // }
+
+func checkErr(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
+
+func getHash(filePath js.Value) interface{} {
+	var md5String string
+	var newFilePath = js.ValueOf(filePath).String()
+	file, err := os.Open(newFilePath)
+	println(reflect.TypeOf(file))
+	checkErr(err)
+	defer file.Close()
+	hash := md5.New()
+	if _, err = io.Copy(hash, file); err != nil {
+		return err
+	}
+	hashInBytes := hash.Sum(nil)[:16]
+	md5String = hex.EncodeToString(hashInBytes)
+	js.Global().Set("output", js.ValueOf(md5String))
+	return md5String
+}
 
 func add(i []js.Value) int {
 	result := i[0].Int() + i[1].Int()
@@ -38,10 +66,10 @@ func registerCallbacks() {
 		subtract(args)
 		return nil
 	}))
-	// js.Global().Set("getFileSize", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
-	// 	getFileSize(args)
-	// 	return nil
-	// }))
+	js.Global().Set("getHash", js.FuncOf(func(this js.Value, args []js.Value) interface{} {
+		getHash(args[0])
+		return nil
+	}))
 }
 
 func main() {

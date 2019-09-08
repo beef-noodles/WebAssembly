@@ -15,7 +15,7 @@ license that can be found in the LICENSE file.
   crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body onload="run()">
 	<!--
 	Add the following polyfill for Microsoft Edge 17/18 support:
 	<script src="https://cdn.jsdelivr.net/npm/text-encoding@0.7.0/lib/encoding.min.js"></script>
@@ -44,17 +44,34 @@ license that can be found in the LICENSE file.
 			console.clear();
 			await go.run(inst);
 			inst = await WebAssembly.instantiate(mod, go.importObject); // reset instance
+			// const {add} = inst.exports
+			// add(1,2)
+			// console.log("out: ", add(1,2))
+		}
+		
+
+		function doAdd() {
+			add(3,4)
+			console.log('output', output)
 		}
 
 		$(document).ready(function(){
-				$("input[type=file]").change(function(){
-						console.log($(this));
-						getFileSize($(this).val());
+				$("input[type=file]").change(function(e){
+						// console.log($(this));
+						// const tempPath = URL.createObjectURL($(this)[0].files[0])
+						// getHash(tempPath);
+						let fr= new FileReader()
+						fr.readAsArrayBuffer(e.target.files[0])
+						fr.onload = (evt) => {
+							let ia8 = new Int8Array(event.target.result)
+							getHash(ia8);
+						}
 				});
 		});
 	</script>
 
 	<button onClick="run();" id="runButton" disabled>Run</button>
+	<button onClick='doAdd()'>add</button>
 
 	<input type='file'>
 </body>
