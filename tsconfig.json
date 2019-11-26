@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "module": "esnext",
+    "target": "es5",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+  },
+  "lib": [
+    "es6",
+    "dom"
+  ],
+  "sourceMap": true,
+  "allowJs": true,
+  "jsx": "react",
+  "rootDir": "front/",
+  "forceConsistentCasingInFileNames": true,
+  "noImplicitReturns": true,
+  "noImplicitThis": true,
+  "noImplicitAny": false,
+  "strictNullChecks": true,
+  "suppressImplicitAnyIndexErrors": true,
+  "noUnusedLocals": true,
+  "noUnusedParameters": true,
+  "skipDefaultLibCheck": true,
+  "skipLibCheck": true,
+  "paths": {},
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "webpack",
+    "jest",
+    "webpack.config.js",
+    "webpack.vendor.js",
+    "postcss.config.js",
+  ],
+  "include": [
+    "front/**/*"
+  ]
+}
