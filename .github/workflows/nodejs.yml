@@ -1,0 +1,31 @@
+name: Node CI
+
+on:
+  push:
+    branches: 
+      - based_rust
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - name: rust_env
+      shell: bash
+      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install, build, and test
+      run: |
+        npm install -g yarn
+        yarn build
+      env:
+        CI: true
