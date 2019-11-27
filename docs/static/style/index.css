@@ -1,0 +1,34 @@
+.basic_3TjEvn {
+  height: 100%;
+  width: 100%;
+}
+.editor-wrapper_3aFnc0 {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}
+.markdown-side_9LXj3W {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding-top: 30px;
+  border: 1px solid #333;
+}
+.textarea_1XCfxF {
+  outline: none;
+  padding: 0 !important;
+  height: 100%;
+  width: 100%;
+  border: none;
+}
+.preview-side_1Xkeps {
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  padding-top: 30px;
+}
+
+
+/*# sourceMappingURL=index.css.map*/
