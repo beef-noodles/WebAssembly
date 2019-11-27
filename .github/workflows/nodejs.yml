@@ -17,7 +17,7 @@ jobs:
     steps:
     - name: rust_env
       shell: bash
-      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -y
+      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
