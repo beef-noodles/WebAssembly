@@ -1,6 +1,6 @@
 {
-  "author": "You <you@example.com>",
-  "name": "rust-webpack-template",
+  "author": "gz <guzhongren@live.cn>",
+  "name": "web_assembly_demo",
   "version": "0.1.0",
   "scripts": {
     "build": "rimraf docs pkg && webpack",
