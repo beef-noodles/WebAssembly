@@ -106,6 +106,42 @@ mod tests {
   use super::*;
 
   #[test]
+  fn should_return_no_whitespace_given_whitespace_sentence_when_consume_whitespace() {
+    let mut parser = Parser{
+      pos: 0,
+      input: String::from("white space sentence")
+    };
+    parser.consume_whitespace();
+    assert_eq!(parser.input, "whitespacesentence")
+  }
+
+  #[test]
+  fn should_return_next_char_given_input_is_123_when_next_char() {
+    let parser = Parser{
+      pos: 0,
+      input: String::from("123")
+    };
+    assert_eq!(parser.next_char(), '1');
+  }
+
+  #[test]
+  fn should_return_true_when_call_end_of_line() {
+    let parser = Parser{
+      pos: 3,
+      input: String::from("123"),
+    };
+    assert_eq!(parser.end_of_line(), true);
+  }
+  #[test]
+  fn should_return_false_when_call_end_of_line() {
+    let parser = Parser{
+      pos: 2,
+      input: String::from("123"),
+    };
+    assert_eq!(parser.end_of_line(), false);
+  }
+
+  #[test]
   fn should_return_true_when_input_is_line_break() {
     assert_eq!(is_new_line('\n'), true);
   }
