@@ -52,7 +52,6 @@ module.exports = {
           {
             loader: 'less-loader',
             options: {
-              javascriptEnabled: true,
               sourceMap: true,
             }
           }
@@ -65,16 +64,18 @@ module.exports = {
   //   "react-dom": "ReactDOM"
   // },
   plugins: [
-    new CopyPlugin([
-      path.resolve(__dirname, "static")
-    ]),
+    new CopyPlugin({
+      patterns: [
+        path.resolve(__dirname, "static")
+      ]
+    }),
 
     new MiniCssExtractPlugin({
       filename: 'static/style/[name].css'
     }),
     new WasmPackPlugin({
       crateDirectory: __dirname,
-      extraArgs: "--out-name index"
+      args: "--log-level warn",
     }),
   ]
 };
