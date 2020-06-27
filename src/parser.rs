@@ -99,3 +99,26 @@ fn create_html_element(tag_name: String, text: String) -> String {
 fn is_new_line(c: char) -> bool {
   c == '\n'
 }
+
+
+#[cfg(test)]
+mod tests {
+  use super::*;
+
+  #[test]
+  fn should_return_true_when_input_is_line_break() {
+    assert_eq!(is_new_line('\n'), true);
+  }
+
+  #[test]
+  fn should_return_li_tag_given_tag_name_is_li_and_text_is_test() {
+    let actual = create_html_element( String::from("li"), String::from("test"));
+    assert_eq!(actual, String::from("<li>test</li>"))
+  }
+
+
+  #[test]
+  fn should_return_words_when_input_is_word() {
+    assert_eq!(parse("word".to_string()), "word");
+  }
+}
