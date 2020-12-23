@@ -1,5 +1,4 @@
 
-
 document.body.onload = addElement;
 function addElement() {
   const markdown = document.createElement('textarea')

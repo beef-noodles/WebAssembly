@@ -100,19 +100,50 @@ fn is_new_line(c: char) -> bool {
   c == '\n'
 }
 
+fn add_one (n: u64) -> u64 { n + 1 }
+
 
 #[cfg(test)]
 mod tests {
   use super::*;
+  use laboratory::{describe, it, expect};
 
   #[test]
-  fn should_return_no_whitespace_given_whitespace_sentence_when_consume_whitespace() {
-    let mut parser = Parser{
-      pos: 0,
-      input: String::from("white space sentence")
-    };
-    parser.consume_whitespace();
-    assert_eq!(parser.input, "whitespacesentence")
+    fn suite() {
+
+        // let's describe what our add_one function will do.
+        // Notice the method "specs" which takes a Vec as it's
+        // argument. Inside this vec is where we will define
+        // the tests related to add_one.
+        describe("add_one()").specs(vec![
+
+            // when describing what it should do, feel free to be
+            // as expressive as you would like.
+            it("should return 1 when passed 0", |_| {
+                // here we will use the default expect function
+                // that comes with laboratory.
+                // We expect the result of add_one(0) to equal 1
+                expect(add_one(0)).to_equal(1)
+            }),
+            // just as a sanity check, let's add a second test
+            it("should return 2 when passed 1", |_| {
+                expect(add_one(1)).to_equal(2)
+            })
+        ]).in_nanoseconds().run();
+    }
+
+  #[test]
+  fn white() {
+    describe("test").specs(vec![
+      it("test", |_| {
+        let mut parser = Parser{
+          pos: 0,
+          input: String::from("white space sentence")
+        };
+        parser.consume_whitespace();
+        expect(parser.input).to_equal("whitespacesentence".to_string())
+      })
+    ]).in_nanoseconds().run();
   }
 
   #[test]
