@@ -39,6 +39,5 @@ jobs:
         git checkout based_rust
         git pull --rebase
         date +"%Y-%m-%d %H:%M:%S.%N" > keepchange.txt
-        git add .
         git commit -am "a commit a day keeps your girlfriend away"
         git push
