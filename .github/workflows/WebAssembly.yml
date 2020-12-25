@@ -36,6 +36,7 @@ jobs:
         git config --local user.email "guzhongren@live.cn"
         git config --local user.name "guzhongren"
         git remote set-url origin https://${{ github.actor }}:${{ secrets.PERSONAL_TOKEN }}@github.com/${{ github.repository }}
+        git checkout based_rust
         git pull --rebase
         date +"%Y-%m-%d %H:%M:%S.%N" > keepchange.txt
         git commit -am "a commit a day keeps your girlfriend away"
